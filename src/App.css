@@ -1,28 +1,32 @@
-.App {
+.finder {
   text-align: center;
 }
-
-.App-logo {
+.finder-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
 }
-
-.App-header {
+.finder-header {
   background-color: #222;
-  height: 150px;
+  height: 70px;
   padding: 20px;
   color: white;
 }
-
-.App-title {
+.finder-title {
   font-size: 1.5em;
 }
-
-.App-intro {
-  font-size: large;
+.finder-body {
+  width: 900px;
+  margin: 10px auto auto auto;
 }
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.finder-input > select {
+  width: 300px;
+  height: 40px;
+  padding-left: 10px;
+  margin: 0 10px 10px 10px;
+  font-size: 15px;
+}
+.finder-result {
+  height: 500px;
+  overflow-y: scroll;
+  border: 1px solid;
 }
