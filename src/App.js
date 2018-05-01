@@ -28,7 +28,9 @@ class App extends React.Component {
 
     this.calculate = this.calculate.bind(this);
   }
-
+  componentWillMount() {
+    document.title = "Atelier Lydie & Suelle Synthesis Finder";
+  }
   componentDidMount() {
     axios.get('/api/getData').then((response) => {
       this.setState({materials: response.data.materials, formulars: response.data.formulars});
