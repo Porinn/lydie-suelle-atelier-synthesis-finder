@@ -20,10 +20,10 @@ exports.calculate = (req, res) => {
 }
 
 var result = [];
-const maxStep = 4;
+const maxStep = 2;
 
 const calculate = (from, to, index, path) => {
-  if (from === to) {
+  if (index > 0 && from === to) {
     result.push(path);
   }
   else if (index < maxStep) {
@@ -91,7 +91,7 @@ const materials = [
   {material: '튼튼한 뼈', category: ['(동물소재)', '(약재료)']},
   {material: '일각', category: ['(동물소재)', '(약재료)']},
   {material: '거수의 뼈', category: ['(동물소재)']},
-  {material: '사악한 어금니', category: ['(동물소재)', '(독재료)']},
+  {material: '사악한 송곳니', category: ['(동물소재)', '(독재료)']},
   {material: '젤리 젬', category: ['(동물소재)', '(보석)']},
   {material: '토끼털', category: ['(동물소재)', '(실소재)']},
   {material: '커다란 비늘', category: ['(동물소재)', '(신비의힘)']},
