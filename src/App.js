@@ -71,7 +71,7 @@ class App extends React.Component {
             <button onClick={this.calculate}>Find</button>
           </div>
           <div className="finder-result">
-            {this.state.result.map((line) => <div>{line}</div>)}
+            {this.state.result.map((line) => <div>{line.path}</div>)}
           </div>
         </div>
       </div>

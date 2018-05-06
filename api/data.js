@@ -12,19 +12,25 @@ exports.calculate = (req, res) => {
   let to = req.body.to;
 
   calculate(from, to, 0, from);
-  setTimeout(() => {res.status(200).json({
-    code: 200,
-    message: 'success',
-    list: result
-  }); result = []}, 3000);
+  setTimeout(() => {
+	result = result.sort((a, b) => {
+		return a.index < b.index ? -1 : a.index > b.index ? 1 : 0;
+	});
+	res.status(200).json({
+		code: 200,
+		message: 'success',
+		list: result
+	});
+	result = []
+  }, 3000);
 }
 
 var result = [];
-const maxStep = 2;
+const maxStep = 4;
 
 const calculate = (from, to, index, path) => {
   if (index > 0 && from === to) {
-    result.push(path);
+    result.push({index: index, path: path});
   }
   else if (index < maxStep) {
     let materialIndex = materials.findIndex((material) => {
@@ -534,5 +540,38 @@ const formulars = [
   {material: '용린의 목걸이', element: ['용의 비늘', '(신비의힘)', '(실소재)', '(향기)']},
   {material: '스파이크 부츠', element: ['무두질 가죽', '(금속)', '(실소재)']},
   {material: '특별비약영양제', element: ['특별 영양제', '(어패류)', '(약재료)', '(물)']},
-  {material: '비밀 백', element: ['특제 백팩', '(금속)', '(실소재)', '(신비의힘)']}
+  {material: '비밀 백', element: ['특제 백팩', '(금속)', '(실소재)', '(신비의힘)']},
+  {material: '창세의 브라존', element: ['심홍석', '하르모늄', '(신비의힘)', '(무기소재)']},
+  {material: '용맹무쌍의 파라심', element: ['위대한 꼬리', '하르모늄', '(금속)', '(무기소재)']},
+  {material: '대현자의 스피라', element: ['심핵', '하르모늄', '(보석)', '(신비의힘)']},
+  {material: '왕의 리안', element: ['용핵', '하르모늄', '(신비의힘)', '(무기소재)']},
+  {material: '조화의 아겐트', element: ['던켈하이트', '하르모늄', '(무기소재)']},
+  {material: '윈터르 카푸트', element: ['빙무의 스틱', '원초의 재', '(보석)', '(중화제)']},
+  {material: '서머르 카푸트', element: ['언펠라이트', '원초의 재', '(보석)', '(중화제)']},
+  {material: '폴스 레겐', element: ['정령석', '만능 중화제 무지개', '(보석)', '(금속)']},
+  {material: '앱소브 카푸트', element: ['사악한 뼈', '원초의 재', '(보석)', '(중화제)']},
+  {material: '뢰베르 기어', element: ['쌍색 커런덤', '심홍석', '(금속)']},
+  {material: '백열머리띠', element: ['모프코트', '실베리아', '(직물)', '(실소재)']},
+  {material: '정령의 이어링', element: ['힘멜 릴리프', '펜데록', '(보석)', '(금속)']},
+  {material: '모노크롬 안경', element: ['칠흑의 성석', '(금속)', '(약재료)', '(독재료)']},
+  {material: '시간조종 모래시계', element: ['흑백의 타로', '나선 시계판', '(모래)']},
+  {material: '광휘의 탈리스만', element: ['하이터 슈토름', '경건한 신자용 부적', '(보석)', '(중화제)']},
+  {material: '월화의 탈리스만', element: ['슈네 슈토름', '미스틱 허브', '(보석)', '(중화제)']},
+  {material: '불사조의 반지', element: ['빙무의 스틱', '(동물소재)', '(신비의힘)', '(에릭실)']},
+  {material: '탐보의 그리모어', element: ['현자의 돌', '피전 블러드 오일', '(용소재)', '(종이)']},
+  {material: '투명 망토', element: ['플뤼겔', '박쥐 날개', '(실소재)', '(에릭실)']},
+  {material: '브리츠 코어 화', element: ['수정 조각', '아이젠 광석', '(연료)', '(중화제)']},
+  {material: '브리츠 코어 빙', element: ['수정 조각', '아이젠 광석', '(물)', '(중화제)']},
+  {material: '브리츠 코어 뇌', element: ['수정 조각', '아이젠 광석', '(광석)', '(중화제)']},
+  {material: '브리츠 코어 풍', element: ['수정 조각', '아이젠 광석', '(기체)', '(중화제)']},
+  {material: '사나이의 누름돌', element: ['소형 하겔상', '(모래)', '(연료)', '(중화제)']},
+  {material: '차원폭탄', element: ['천계의 대청소', '종말의 불씨', '깜짝 선물', '(중화제)']},
+  {material: '오메가 크래프트', element: ['크래프트', '골드 아이젠', '(화약)', '(기체)']},
+  {material: '애플 타르트', element: ['눈의 여왕', '대형 알', '보릿가루', '(식재)']},
+  {material: '전자동 버섯냄비', element: ['요정의 양산', '(버섯)', '(식재)', '(금속)']},
+  {material: '강장분말약', element: ['사약한 뼈', '(약재료)', '(어패류)', '(용소재)']},
+  {material: '불꽃의 망치', element: ['찌릿찌릿물', '(금속)', '(목재)']},
+  {material: '강력사나이 기어', element: ['골드 아이젠', '(기름)', '(화약)', '(금속)']},
+  {material: '싸움의 부적', element: ['무두질 가죽', '동물의 가죽', '(점토)', '(보석)']},
+  {material: '두 사람의 물감', element: ['연금점토', '다색 염료', '(신비의힘)', '(에릭실)']}
 ]
