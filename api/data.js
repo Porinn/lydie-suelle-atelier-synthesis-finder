@@ -25,14 +25,16 @@ exports.calculate = (req, res) => {
   }, 3000);
 }
 
-var result = [];
+let result = [];
 const maxStep = 4;
+let minStep = maxStep - 1;
 
 const calculate = (from, to, index, path) => {
   if (index > 0 && from === to) {
+	  minStep = index;
     result.push({index: index, path: path});
   }
-  else if (index < maxStep) {
+  else if (index < maxStep && index <= minStep) {
     let materialIndex = materials.findIndex((material) => {
       return material.material === from;
     })
